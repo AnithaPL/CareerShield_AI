@@ -1,0 +1,24 @@
+CAREERSHIELD AI - QUICK INSTALLATION
+
+Required:
+1. Python 3.10 or newer
+2. Python packages: pip install -r requirements.txt
+3. SQLite (already included with Python)
+
+Windows commands:
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+python scripts\train_model.py
+python run.py
+
+Open: http://127.0.0.1:5000
+
+Optional OCR:
+Install Tesseract OCR separately and add its folder to PATH. The screenshot module needs it.
+
+Models:
+- TF-IDF Vectorizer: converts job text to numeric features.
+- Logistic Regression: 3-class classifier: Genuine, Suspicious, Likely Scam.
+- Explainability: influential TF-IDF features + transparent rule findings.
+No separate LLM is required for the core system.

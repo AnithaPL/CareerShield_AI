@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+*.pyc
+career_shield.db
+uploads/*
+!uploads/.gitkeep
