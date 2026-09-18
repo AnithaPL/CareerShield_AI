@@ -1,38 +1,78 @@
 # CareerShield AI
 
-An Intelligent Career Safety Platform for Recruitment Fraud Detection Using Explainable Artificial Intelligence (XAI)
+An Intelligent Career Safety Platform for Recruitment Fraud Detection Using Explainable Artificial Intelligence (XAI).
 
-Explainable AI Based Recruitment Fraud Detection System.
+## Implemented Modules
 
-## Modules
-- Job Scam Detection: Genuine / Suspicious / Likely Scam
-- Recruiter Email Verification
-- Resume Privacy Analyzer
-- Explainable Risk Score
-- Analysis History
-- PDF Offer Letter Verification
-- LinkedIn/Job URL Analysis
-- Company Website Verification
-- WhatsApp/Telegram Screenshot OCR
-- AI Chat Assistant
+- Job Scam Detection: TF-IDF and Logistic Regression prediction, rule-based warnings, risk score, and explanations.
+- Resume Privacy Analyzer: detects phone, email, PAN, Aadhaar, passport, and bank-account information.
+- Recruiter Email Verification: validates email format and identifies free or business domains.
+- Website Verification: validates URLs and checks HTTPS availability.
+- Analysis History: stores and displays previous analyses with pagination and filters.
 
-## Stack
-Python 3.10+, Flask, scikit-learn, pandas, joblib, PyMuPDF, Pillow, pytesseract, dnspython, requests, BeautifulSoup.
+The application also provides user registration, password login, logout, and user-specific analysis history.
 
-## Model
-The supplied documents specify NLP, ML and XAI but do not prescribe a particular algorithm or dataset. This prototype therefore uses an interpretable TF-IDF + Logistic Regression classifier trained on a small project seed dataset. XAI is provided by showing influential TF-IDF features, while a transparent rule engine detects payment, OTP/password, sensitive-data, urgency and similar signals. The final risk score combines ML class information with rule signals.
+## Technology Stack
 
-## Install
-1. Install Python 3.10+.
-2. `python -m venv .venv`
-3. Windows: `.venv\\Scripts\\activate` (PowerShell: `.\\.venv\\Scripts\\Activate.ps1`)
-4. `pip install -r requirements.txt`
-5. `python scripts/train_model.py`
-6. `python run.py`
-7. Open http://127.0.0.1:5000
+- Python 3.10+
+- Flask
+- scikit-learn
+- pandas
+- joblib
+- SQLite
+- HTML and CSS
 
-### OCR
-Screenshot analysis additionally needs Tesseract OCR installed on the OS and available on PATH. No separate SQL server is required; SQLite is built into Python.
+## Job Analysis Method
 
-## Academic scope note
-The source documents list Browser Extension and Multi-language Support as future enhancements. They are not implemented here because the documents do not provide implementation details for them. The AI Chat Assistant is a safety-focused rule assistant, not a claimed large language model.
+1. TF-IDF converts the job advertisement into numerical text features.
+2. Logistic Regression produces the original ML prediction: `Genuine` or `Likely Scam`.
+3. Transparent security rules detect payment requests, urgency, OTPs, credentials, personal documents, messaging-app recruitment, and other warning signals.
+4. The ML prediction, confidence, and rule-based score are combined into the final prediction: `Genuine`, `Suspicious`, or `Likely Scam`.
+
+## Installation
+
+1. Install Python 3.10 or newer.
+2. Create and activate a virtual environment:
+
+	```powershell
+	python -m venv .venv
+	.\.venv\Scripts\Activate.ps1
+	```
+
+3. Install dependencies:
+
+	```powershell
+	pip install -r requirements.txt
+	```
+
+4. Train the model if the model file needs to be regenerated:
+
+	```powershell
+	python train_model.py
+	```
+
+5. Start the application:
+
+	```powershell
+	python app.py
+	```
+
+6. Open http://127.0.0.1:5000 and create an account.
+
+SQLite is included with Python. The local `history.db` file stores users and analysis history and is excluded from Git.
+
+## Application Routes
+
+- `/` - Home dashboard
+- `/analyze` - Job Scam Detection
+- `/privacy` - Resume Privacy Analyzer
+- `/email` - Recruiter Email Verification
+- `/website` - Website Verification
+- `/history` - Analysis History
+- `/login` - User login
+- `/register` - Account registration
+- `/logout` - Sign out
+
+## Future Scope
+
+PDF offer-letter verification, LinkedIn and job-URL analysis, WhatsApp or Telegram screenshot OCR, multilingual support, browser extension support, and an AI chat assistant can be added in future versions.
