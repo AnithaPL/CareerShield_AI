@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <style>
+      .title{font:700 40px Arial,sans-serif;fill:#123b59}.sub{font:700 27px Arial,sans-serif;fill:#123b59}.head{font:700 21px Arial,sans-serif;fill:#fff}.body{font:400 17px Arial,sans-serif;fill:#17324d}.small{font:400 16px Arial,sans-serif;fill:#3d5d70}.box{stroke:#a9bfce;stroke-width:2;rx:12}.line{stroke:#174a6e;stroke-width:3;fill:none}
+    </style>
+  </defs>
+  <rect width="1600" height="900" fill="#f4f8fb"/><rect width="1600" height="112" fill="#fff"/><rect y="108" width="1600" height="4" fill="#287aa8"/>
+  <text x="800" y="58" text-anchor="middle" class="title">CareerShield AI - UML and ER Design</text><text x="800" y="91" text-anchor="middle" class="small">Implemented application components and SQLite analysis-history structure</text>
+
+  <text x="400" y="160" text-anchor="middle" class="sub">UML Component / Class View</text>
+  <rect x="55" y="205" width="270" height="170" fill="#236b8e" class="box"/><text x="190" y="242" text-anchor="middle" class="head">Flask Application</text><text x="80" y="282" class="body" fill="#fff">+ home()</text><text x="80" y="310" class="body" fill="#fff">+ privacy()</text><text x="80" y="338" class="body" fill="#fff">+ email_verification()</text><text x="80" y="366" class="body" fill="#fff">+ history()</text>
+  <rect x="390" y="205" width="300" height="170" fill="#e67e22" class="box"/><text x="540" y="242" text-anchor="middle" class="head">Job Analyzer</text><text x="415" y="282" class="body" fill="#fff">+ analyze_job(text)</text><text x="415" y="313" class="body" fill="#fff">ML prediction</text><text x="415" y="344" class="body" fill="#fff">Rule-based warnings</text><text x="415" y="366" class="small" fill="#fff4e8">Risk score and final label</text>
+  <rect x="755" y="205" width="300" height="170" fill="#3b8c75" class="box"/><text x="905" y="242" text-anchor="middle" class="head">Verification Modules</text><text x="780" y="282" class="body" fill="#fff">+ verify_email(email)</text><text x="780" y="313" class="body" fill="#fff">+ analyze_resume(text)</text><text x="780" y="344" class="body" fill="#fff">+ verify_website(url)</text><text x="780" y="366" class="small" fill="#eaf8f2">Specialized checks</text>
+  <rect x="1120" y="205" width="400" height="170" fill="#123b59" class="box"/><text x="1320" y="242" text-anchor="middle" class="head">History Database API</text><text x="1145" y="282" class="body" fill="#fff">+ create_table()</text><text x="1145" y="313" class="body" fill="#fff">+ save_analysis(type, input, result)</text><text x="1145" y="344" class="body" fill="#fff">+ get_history()</text><text x="1145" y="366" class="small" fill="#dcecf7">SQLite persistence</text>
+  <path d="M325 290 L390 290" class="line"/><path d="M690 290 L755 290" class="line"/><path d="M1055 290 L1120 290" class="line"/>
+  <text x="357" y="278" text-anchor="middle" class="small">calls</text><text x="722" y="278" text-anchor="middle" class="small">routes</text><text x="1087" y="278" text-anchor="middle" class="small">stores</text>
+
+  <text x="800" y="455" text-anchor="middle" class="sub">Entity-Relationship Diagram</text>
+  <rect x="570" y="510" width="460" height="265" fill="#fff" class="box"/><rect x="570" y="510" width="460" height="55" fill="#2b78a9" class="box"/><text x="800" y="545" text-anchor="middle" class="head">analysis_history</text>
+  <text x="610" y="605" class="body">id</text><text x="610" y="639" class="body">analysis_type</text><text x="610" y="673" class="body">input_text</text><text x="610" y="707" class="body">result</text><text x="610" y="741" class="body">created_at</text>
+  <text x="820" y="605" class="small">INTEGER PRIMARY KEY</text><text x="820" y="639" class="small">TEXT NOT NULL</text><text x="820" y="673" class="small">TEXT NOT NULL</text><text x="820" y="707" class="small">TEXT NOT NULL</text><text x="820" y="741" class="small">TIMESTAMP</text>
+  <rect x="130" y="590" width="270" height="105" fill="#236b8e" class="box"/><text x="265" y="632" text-anchor="middle" class="head">Analysis Request</text><text x="265" y="668" text-anchor="middle" class="small" fill="#e8f4fb">type + original input</text>
+  <rect x="1200" y="590" width="270" height="105" fill="#3b8c75" class="box"/><text x="1335" y="632" text-anchor="middle" class="head">Analysis Result</text><text x="1335" y="668" text-anchor="middle" class="small" fill="#eaf8f2">prediction + score + reasons</text>
+  <path d="M400 642 L570 642" class="line"/><path d="M1030 642 L1200 642" class="line"/><text x="485" y="625" text-anchor="middle" class="small">saved as</text><text x="1115" y="625" text-anchor="middle" class="small">contains</text>
+  <text x="800" y="840" text-anchor="middle" class="small">One history record stores the input, analysis type, result, and creation date.</text>
+</svg>

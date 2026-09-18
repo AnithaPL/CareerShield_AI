@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerShield AI</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>CareerShield AI</h1>
+    <h2>Recruitment Fraud Detection System</h2>
+
+    <p>Analyze job advertisements using Machine Learning.</p>
+
+    <hr>
+
+    <h3>Job Scam Detection</h3>
+
+    <form method="POST">
+        <label for="job_text">Enter Job Description:</label>
+        <br><br>
+
+        <textarea
+            id="job_text"
+            name="job_text"
+            rows="8"
+            cols="60"
+            placeholder="Paste a job advertisement here..."
+            required
+        ></textarea>
+
+        <br><br>
+
+        <button type="submit">Analyze Job</button>
+    </form>
+
+    {% if result %}
+        <hr>
+
+        <h3>Analysis Result</h3>
+
+        <p>
+            <strong>Prediction:</strong>
+            {{ result.prediction }}
+        </p>
+
+<p>
+    <strong>Confidence:</strong>
+    {{ result.confidence }}%
+</p>
+
+<p>
+    <strong>Risk Score:</strong>
+    {{ result.risk_score }}/100
+</p>
+
+<h4>Risk Explanation</h4>
+
+{% if result.reasons %}
+    <ul>
+        {% for reason in result.reasons %}
+            <li>{{ reason }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No specific warning signals detected.</p>
+{% endif %}
+    {% endif %}
+</body>
+</html>

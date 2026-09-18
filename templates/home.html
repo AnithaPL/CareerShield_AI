@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerShield AI | Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="hero home-hero">
+        <div class="logo">🛡️</div>
+        <h1>CareerShield <span>AI</span></h1>
+        <h2>Career Safety Dashboard</h2>
+        <p>Analyze job offers, verify recruiters, and protect your personal information.</p>
+    </header>
+
+    <main class="container">
+        <nav class="navigation">
+            <a href="/" class="home-link">🏠 Home</a>
+            <a href="/analyze">🔍 Job Scam Detection</a>
+            <a href="/privacy">🛡️ Resume Privacy</a>
+            <a href="/email">📧 Email Verification</a>
+            <a href="/website">🌐 Website Verification</a>
+            <a href="/history">📊 History</a>
+            <a href="{{ url_for('logout') }}">🚪 Log Out</a>
+        </nav>
+
+        <section class="features dashboard-features">
+            <h2>Our Features</h2>
+            <div class="feature-grid">
+                <a class="feature-card" href="/analyze">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Job Scam Detection</h3>
+                    <p>Analyze job advertisements with AI, risk scoring, and warning explanations.</p>
+                </a>
+                <a class="feature-card" href="/privacy">
+                    <div class="feature-icon">📄</div>
+                    <h3>Resume Privacy Analyzer</h3>
+                    <p>Detect sensitive information and receive privacy protection recommendations.</p>
+                </a>
+                <a class="feature-card" href="/email">
+                    <div class="feature-icon">📧</div>
+                    <h3>Recruiter Email Verification</h3>
+                    <p>Validate email format and identify free or business email domains.</p>
+                </a>
+                <a class="feature-card" href="/website">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Website Verification</h3>
+                    <p>Validate website URLs, check HTTPS availability, and review security warnings.</p>
+                </a>
+                <a class="feature-card" href="/history">
+                    <div class="feature-icon">📊</div>
+                    <h3>Analysis History</h3>
+                    <p>Review previous predictions, risk scores, original inputs, and analysis dates.</p>
+                </a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

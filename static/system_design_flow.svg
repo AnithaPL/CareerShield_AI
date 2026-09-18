@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#174a6e"/></marker>
+    <style>
+      .title{font:700 40px Arial,sans-serif;fill:#123b59}.section{font:700 25px Arial,sans-serif;fill:#fff}.body{font:400 19px Arial,sans-serif;fill:#17324d}.small{font:400 17px Arial,sans-serif;fill:#3d5d70}.box{stroke:#a9bfce;stroke-width:2;rx:14}.arrow{stroke:#174a6e;stroke-width:4;fill:none;marker-end:url(#arrow)}.dash{stroke:#7894a5;stroke-width:3;stroke-dasharray:9 8;fill:none;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1600" height="900" fill="#f4f8fb"/>
+  <rect width="1600" height="112" fill="#fff"/><rect y="108" width="1600" height="4" fill="#287aa8"/>
+  <text x="800" y="58" text-anchor="middle" class="title">CareerShield AI - DFD and Flowchart</text>
+  <text x="800" y="91" text-anchor="middle" class="small">Data flow from user input to explainable recruitment-risk result</text>
+
+  <text x="400" y="160" text-anchor="middle" class="title" style="font-size:28px">Level 0 Data Flow Diagram</text>
+  <rect x="55" y="205" width="200" height="105" fill="#236b8e" class="box"/><text x="155" y="250" text-anchor="middle" class="section">User</text><text x="155" y="282" text-anchor="middle" class="body" fill="#fff">Recruitment data</text>
+  <rect x="330" y="190" width="300" height="135" fill="#2b78a9" class="box"/><text x="480" y="238" text-anchor="middle" class="section">CareerShield AI</text><text x="480" y="273" text-anchor="middle" class="body" fill="#fff">Flask application</text><text x="480" y="301" text-anchor="middle" class="small" fill="#e8f4fb">Routes and result display</text>
+  <rect x="710" y="190" width="280" height="135" fill="#e67e22" class="box"/><text x="850" y="238" text-anchor="middle" class="section">Analysis Engine</text><text x="850" y="273" text-anchor="middle" class="body" fill="#fff">ML + security rules</text><text x="850" y="301" text-anchor="middle" class="small" fill="#fff4e8">Risk and explanation</text>
+  <rect x="1070" y="190" width="220" height="135" fill="#3b8c75" class="box"/><text x="1180" y="238" text-anchor="middle" class="section">SQLite</text><text x="1180" y="273" text-anchor="middle" class="body" fill="#fff">History database</text><text x="1180" y="301" text-anchor="middle" class="small" fill="#eaf8f2">Saved analyses</text>
+  <rect x="1360" y="205" width="185" height="105" fill="#123b59" class="box"/><text x="1452" y="250" text-anchor="middle" class="section">Result</text><text x="1452" y="282" text-anchor="middle" class="small" fill="#dcecf7">Risk report</text>
+  <path d="M255 257 L330 257" class="arrow"/><path d="M630 257 L710 257" class="arrow"/><path d="M990 257 L1070 257" class="arrow"/><path d="M1290 257 L1360 257" class="arrow"/><text x="293" y="243" text-anchor="middle" class="small">input</text><text x="670" y="243" text-anchor="middle" class="small">request</text><text x="1030" y="243" text-anchor="middle" class="small">save</text><text x="1325" y="243" text-anchor="middle" class="small">display</text>
+
+  <text x="800" y="405" text-anchor="middle" class="title" style="font-size:28px">Detailed Processing Flowchart</text>
+  <rect x="685" y="445" width="230" height="62" fill="#236b8e" class="box"/><text x="800" y="484" text-anchor="middle" class="section">Start / User Input</text>
+  <path d="M800 507 L800 535" class="arrow"/>
+  <rect x="650" y="535" width="300" height="70" fill="#2b78a9" class="box"/><text x="800" y="578" text-anchor="middle" class="section">Select Analysis Type</text>
+  <path d="M650 570 L530 570 L530 650" class="arrow"/><path d="M950 570 L1070 570 L1070 650" class="arrow"/><text x="545" y="556" class="small">Job content</text><text x="975" y="556" class="small">Email / Resume / URL</text>
+  <rect x="360" y="650" width="340" height="72" fill="#e67e22" class="box"/><text x="530" y="691" text-anchor="middle" class="section">TF-IDF + ML + Rules</text>
+  <rect x="900" y="650" width="340" height="72" fill="#7a5a9e" class="box"/><text x="1070" y="691" text-anchor="middle" class="section">Specialized Analyzer</text>
+  <path d="M530 722 L530 755 L800 755" class="arrow"/><path d="M1070 722 L1070 755 L800 755" class="arrow"/>
+  <rect x="650" y="755" width="300" height="65" fill="#123b59" class="box"/><text x="800" y="795" text-anchor="middle" class="section">Display and Save Result</text>
+  <path d="M800 820 L800 852" class="arrow"/><text x="800" y="878" text-anchor="middle" class="small">Final output: prediction, score, risk level, explanation, and history record</text>
+</svg>

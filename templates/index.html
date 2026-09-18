@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Job Scam Detection | CareerShield AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header class="hero">
+
+        <div class="logo">🛡️</div>
+
+        <h1>CareerShield <span>AI</span></h1>
+
+        <h2>Job Scam Detection</h2>
+
+        <p>
+            Analyze job advertisements with explainable AI and rule-based risk detection.
+        </p>
+
+    </header>
+
+
+    <main class="container">
+
+        <!-- Navigation -->
+
+        <nav class="navigation">
+
+            <a href="/">🏠 Home</a>
+
+            <a href="/analyze">🔍 Job Scam Detection</a>
+
+            <a href="/privacy">🛡️ Resume Privacy</a>
+
+            <a href="/email">📧 Email Verification</a>
+
+            <a href="/website">🌐 Website Verification</a>
+
+            <a href="/history">📊 History</a>
+
+                <a href="{{ url_for('logout') }}">🚪 Log Out</a>
+
+        </nav>
+
+
+        <!-- Job Analysis Form -->
+
+        <section class="analyzer">
+
+            <h2>Analyze a Job Advertisement</h2>
+
+            <form method="POST">
+
+                <label for="job_text">
+                    Enter Job Description:
+                </label>
+
+                <textarea
+                    id="job_text"
+                    name="job_text"
+                    rows="8"
+                    placeholder="Paste a job advertisement here..."
+                    required
+                ></textarea>
+
+                <button type="submit">
+                    🔍 Analyze Job
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- Analysis Result -->
+
+        {% if result %}
+
+        <section class="result-card">
+
+            <div class="result-header">
+
+                <h2>🛡️ Analysis Result</h2>
+
+                <span>Analysis Completed</span>
+
+            </div>
+
+
+            <div class="result-content">
+
+
+                <!-- Final Three-Class Prediction -->
+
+                <div class="prediction-box">
+
+                    <p>Final Prediction</p>
+
+                    <h2>
+                        {{ result.prediction }}
+                    </h2>
+                    <p>
+                        ML Prediction: {{ result.ml_prediction }}
+                    </p>
+
+                </div>
+
+
+                <!-- Scores -->
+
+                <div class="score-grid">
+
+
+                    <!-- Confidence -->
+
+                    <div class="score-box">
+
+                        <p>Confidence</p>
+
+                        <h2>
+                            {{ result.confidence }}%
+                        </h2>
+
+                    </div>
+
+
+                    <!-- Rule-Based Risk Score -->
+
+                    <div class="score-box">
+
+                        <p>Rule-Based Risk Score</p>
+
+                        <h2 class="risk-score">
+                            {{ result.risk_score }}/100
+                        </h2>
+
+
+                        <!-- Risk Progress Bar -->
+
+                        <div class="risk-progress">
+
+                            <div
+                                class="risk-progress-fill
+                                {% if result.risk_level == 'Low' %}
+                                    low-progress
+                                {% elif result.risk_level == 'Medium' %}
+                                    medium-progress
+                                {% else %}
+                                    high-progress
+                                {% endif %}"
+                                style="width: {{ result.risk_score }}%;"
+                            ></div>
+
+                        </div>
+
+
+                        <!-- Risk Level -->
+
+                        {% if result.risk_level == "Low" %}
+
+                            <p class="risk-level low-risk">
+                                🟢 Risk Level: {{ result.risk_level }}
+                            </p>
+
+                        {% elif result.risk_level == "Medium" %}
+
+                            <p class="risk-level medium-risk">
+                                🟡 Risk Level: {{ result.risk_level }}
+                            </p>
+
+                        {% else %}
+
+                            <p class="risk-level high-risk">
+                                🔴 Risk Level: {{ result.risk_level }}
+                            </p>
+
+                        {% endif %}
+
+                    </div>
+                </div>
+
+
+                <!-- Risk Score Donut -->
+
+                <div class="risk-visual">
+
+                    <div
+                        class="risk-donut {% if result.risk_level == 'Low' %}donut-low{% elif result.risk_level == 'Medium' %}donut-medium{% else %}donut-high{% endif %}"
+                        style="--risk-score: {{ result.risk_score }}%;"
+                        role="img"
+                        aria-label="Risk score: {{ result.risk_score }} out of 100"
+                    >
+                        <div class="risk-donut-center">
+                            <strong>{{ result.risk_score }}</strong>
+                            <span>/ 100</span>
+                        </div>
+                    </div>
+
+                    <div class="risk-visual-copy">
+                        <h3>Risk Overview</h3>
+                        <p>
+                            <span class="risk-dot {% if result.risk_level == 'Low' %}dot-low{% elif result.risk_level == 'Medium' %}dot-medium{% else %}dot-high{% endif %}"></span>
+                            {{ result.risk_level }} risk indicators detected
+                        </p>
+                        <p class="risk-visual-note">
+                            The score is based on security warning signals found in the submitted content.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- ML Confidence Note -->
+
+                {% if result.confidence_note %}
+
+                <div class="info-text">
+
+                    ℹ️ {{ result.confidence_note }}
+
+                </div>
+
+                {% endif %}
+
+
+                <!-- Overall Assessment -->
+
+                <div class="overall-assessment">
+
+                    <h3>🛡️ Overall Assessment</h3>
+
+                    <p>
+                        {{ result.overall_assessment }}
+                    </p>
+
+                </div>
+
+
+                <!-- Score Explanation -->
+
+                <p class="info-text">
+
+                    ML prediction and rule-based risk score
+                    are separate indicators.
+
+                    Always review the warning explanations
+                    and verify the recruiter independently.
+
+                </p>
+
+
+                <!-- Risk Explanation -->
+
+                <div class="explanation-box">
+
+                    <h3>📋 Risk Explanation</h3>
+
+
+                    {% if result.reasons %}
+
+                        <ul>
+
+                            {% for reason in result.reasons %}
+
+                                <li>
+                                    {{ reason }}
+                                </li>
+
+                            {% endfor %}
+
+                        </ul>
+
+                    {% else %}
+
+                        <p>
+                            No specific warning signals detected.
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- Safety Message -->
+
+                <div class="caution-box">
+
+                    🛡️ <strong>Be cautious:</strong>
+
+                    Always verify recruiters before sharing
+                    personal or financial information.
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+        {% endif %}
+
+
+    </main>
+
+</body>
+
+</html>

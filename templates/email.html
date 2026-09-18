@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Recruiter Email Verification</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header class="hero">
+        <div class="logo">🛡️</div>
+
+        <h1>CareerShield <span>AI</span></h1>
+
+        <h2>Recruiter Email Verification</h2>
+
+        <p>Check email format and identify the email provider type.</p>
+    </header>
+
+    <main class="container">
+
+        <nav class="navigation">
+    <a href="/">🏠 Home</a>
+    <a href="/analyze">🔍 Job Scam Detection</a>
+
+    <a href="/privacy">🛡️ Resume Privacy</a>
+
+    <a href="/email">📧 Email Verification</a>
+
+    <a href="/website">🌐 Website Verification</a>
+
+    <a href="/history">📊 History</a>
+    <a href="{{ url_for('logout') }}">🚪 Log Out</a>
+</nav>
+
+        <section class="analyzer">
+
+            <h2>Verify Recruiter Email</h2>
+
+            <form method="POST">
+
+                <label for="email">Recruiter Email Address:</label>
+
+                <input
+    type="text"
+    id="email"
+    name="email"
+    placeholder="recruiter@example.com"
+    required
+    style="width: 100%; padding: 15px; border: 1px solid #bfdbfe; border-radius: 10px; font-size: 15px;"
+>
+
+                <button type="submit">📧 Verify Email</button>
+
+            </form>
+
+        </section>
+
+        {% if result %}
+
+        <section class="result-card">
+
+            <div class="result-header">
+                <h2>📧 Verification Result</h2>
+                <span>Analysis Completed</span>
+            </div>
+
+            <div class="result-content">
+
+                <div class="verification-summary email-summary">
+
+                    <div class="verification-icon">📧</div>
+
+                    <div>
+                        <p>Email Address</p>
+                        <h2>{{ result.email }}</h2>
+                        <strong class="verification-status {% if result.valid_format %}status-positive{% else %}status-negative{% endif %}">
+                            {{ "Valid Format" if result.valid_format else "Invalid Format" }}
+                        </strong>
+                    </div>
+
+                </div>
+
+                <div class="explanation-box">
+
+                    <h3>📋 Verification Details</h3>
+
+                    <p>
+                        <strong>Valid Format:</strong>
+                        {{ "Yes" if result.valid_format else "No" }}
+                    </p>
+
+                    <p>
+                        <strong>Email Type:</strong>
+                        <span class="status-pill">{{ result.email_type }}</span>
+                    </p>
+
+                    <p>{{ result.message }}</p>
+
+                </div>
+
+                <div class="caution-box">
+                    🛡️ Email classification does not prove recruiter authenticity.
+                    Verify the company through official sources.
+                </div>
+
+            </div>
+
+        </section>
+
+        {% endif %}
+
+    </main>
+
+</body>
+
+</html>

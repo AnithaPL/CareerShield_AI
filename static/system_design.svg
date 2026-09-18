@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#1f4e79"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#17324d" flood-opacity="0.16"/>
+    </filter>
+    <style>
+      .title { font: 700 42px Arial, sans-serif; fill: #12395b; }
+      .subtitle { font: 400 21px Arial, sans-serif; fill: #4c6375; }
+      .heading { font: 700 25px Arial, sans-serif; fill: #ffffff; }
+      .body { font: 400 20px Arial, sans-serif; fill: #17324d; }
+      .small { font: 400 18px Arial, sans-serif; fill: #35556d; }
+      .box { stroke: #b9cad6; stroke-width: 2; rx: 16; filter: url(#shadow); }
+      .arrow { stroke: #1f4e79; stroke-width: 4; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="#f4f8fb"/>
+  <rect x="0" y="0" width="1600" height="116" fill="#ffffff"/>
+  <rect x="0" y="112" width="1600" height="4" fill="#2b78a9"/>
+  <text x="800" y="60" text-anchor="middle" class="title">CareerShield AI - System Design</text>
+  <text x="800" y="94" text-anchor="middle" class="subtitle">Explainable AI based recruitment fraud detection system</text>
+
+  <!-- User and interface -->
+  <rect x="80" y="185" width="280" height="140" fill="#236b8e" class="box"/>
+  <text x="220" y="230" text-anchor="middle" class="heading">User</text>
+  <text x="220" y="268" text-anchor="middle" class="body" fill="#ffffff">Submit recruitment data</text>
+  <text x="220" y="298" text-anchor="middle" class="small" fill="#e8f4fb">Job | Email | Resume | URL</text>
+
+  <rect x="470" y="185" width="310" height="140" fill="#2b78a9" class="box"/>
+  <text x="625" y="230" text-anchor="middle" class="heading">Flask Web Interface</text>
+  <text x="625" y="270" text-anchor="middle" class="body" fill="#ffffff">Routes input to analyzers</text>
+  <text x="625" y="300" text-anchor="middle" class="small" fill="#e8f4fb">Displays results and explanations</text>
+
+  <path d="M360 255 L470 255" class="arrow"/>
+
+  <!-- Analysis modules -->
+  <rect x="80" y="405" width="280" height="175" fill="#e67e22" class="box"/>
+  <text x="220" y="448" text-anchor="middle" class="heading">Job Scam Detector</text>
+  <text x="220" y="488" text-anchor="middle" class="body" fill="#ffffff">TF-IDF + ML model</text>
+  <text x="220" y="522" text-anchor="middle" class="body" fill="#ffffff">Rule-based checks</text>
+  <text x="220" y="556" text-anchor="middle" class="small" fill="#fff4e8">Payment, OTP, urgency, documents</text>
+
+  <rect x="470" y="405" width="310" height="175" fill="#3b8c75" class="box"/>
+  <text x="625" y="448" text-anchor="middle" class="heading">Email Verification</text>
+  <text x="625" y="488" text-anchor="middle" class="body" fill="#ffffff">Format validation</text>
+  <text x="625" y="522" text-anchor="middle" class="body" fill="#ffffff">Domain classification</text>
+  <text x="625" y="556" text-anchor="middle" class="small" fill="#eaf8f2">Free provider or business domain</text>
+
+  <rect x="880" y="405" width="280" height="175" fill="#7a5a9e" class="box"/>
+  <text x="1020" y="448" text-anchor="middle" class="heading">Resume Privacy</text>
+  <text x="1020" y="488" text-anchor="middle" class="body" fill="#ffffff">Sensitive data detection</text>
+  <text x="1020" y="522" text-anchor="middle" class="body" fill="#ffffff">Privacy score</text>
+  <text x="1020" y="556" text-anchor="middle" class="small" fill="#f4edfb">PAN, Aadhaar, phone, bank details</text>
+
+  <rect x="1260" y="405" width="280" height="175" fill="#4d7892" class="box"/>
+  <text x="1400" y="448" text-anchor="middle" class="heading">Website Verification</text>
+  <text x="1400" y="488" text-anchor="middle" class="body" fill="#ffffff">URL validation</text>
+  <text x="1400" y="522" text-anchor="middle" class="body" fill="#ffffff">Domain and HTTPS check</text>
+  <text x="1400" y="556" text-anchor="middle" class="small" fill="#eaf4f8">Authenticity still needs verification</text>
+
+  <!-- Interface fan-out -->
+  <path d="M625 325 L625 365 L220 365 L220 405" class="arrow"/>
+  <path d="M625 325 L625 405" class="arrow"/>
+  <path d="M625 325 L625 365 L1020 365 L1020 405" class="arrow"/>
+  <path d="M625 325 L625 350 L1400 350 L1400 405" class="arrow"/>
+
+  <!-- Results -->
+  <rect x="270" y="675" width="410" height="135" fill="#12395b" class="box"/>
+  <text x="475" y="718" text-anchor="middle" class="heading">Risk Assessment</text>
+  <text x="475" y="755" text-anchor="middle" class="body" fill="#ffffff">ML prediction + security rules</text>
+  <text x="475" y="787" text-anchor="middle" class="small" fill="#dcecf7">Score, risk level, warning reasons</text>
+
+  <rect x="900" y="675" width="430" height="135" fill="#236b8e" class="box"/>
+  <text x="1115" y="718" text-anchor="middle" class="heading">Final Result and History</text>
+  <text x="1115" y="755" text-anchor="middle" class="body" fill="#ffffff">Genuine | Suspicious | Likely Scam</text>
+  <text x="1115" y="787" text-anchor="middle" class="small" fill="#e8f4fb">Display result and save to SQLite</text>
+
+  <!-- Module to assessment -->
+  <path d="M220 580 L220 625 L475 625 L475 675" class="arrow"/>
+  <path d="M625 580 L625 675" class="arrow"/>
+  <path d="M1020 580 L1020 625 L475 625" class="arrow"/>
+  <path d="M1400 580 L1400 625 L1115 625 L1115 675" class="arrow"/>
+  <path d="M680 742 L900 742" class="arrow"/>
+
+  <text x="800" y="860" text-anchor="middle" class="subtitle">ML Prediction + Confidence + Rule-Based Warning Signals = Final Risk Assessment</text>
+</svg>

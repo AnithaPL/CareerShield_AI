@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Analysis History</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header class="hero">
+
+        <div class="logo">🛡️</div>
+
+        <h1>CareerShield <span>AI</span></h1>
+
+        <h2>Analysis History</h2>
+
+        <p>View your previous analysis records.</p>
+
+    </header>
+
+    <main class="container">
+
+        <nav class="navigation">
+
+            <a href="/">🏠 Home</a>
+
+            <a href="/analyze">🔍 Job Scam Detection</a>
+
+            <a href="/privacy">🛡️ Resume Privacy</a>
+
+            <a href="/email">📧 Email Verification</a>
+
+            <a href="/website">🌐 Website Verification</a>
+
+            <a href="/history">📊 History</a>
+
+            <a href="{{ url_for('logout') }}">🚪 Log Out</a>
+
+        </nav>
+
+        <section class="analyzer">
+
+            <h2>Previous Analyses</h2>
+
+            {% if records %}
+
+                <div class="history-overview">
+
+                    <a class="history-total {% if filter_key == 'all' %}selected-filter{% endif %}" href="{{ url_for('history', filter='all') }}">
+                        <strong>{{ total_all_records }}</strong>
+                        <span>All analyses</span>
+                    </a>
+
+                    <a class="history-stat stat-job {% if filter_key == 'jobs' %}selected-filter{% endif %}" href="{{ url_for('history', filter='jobs') }}">
+                        <strong>{{ job_count }}</strong>
+                        <span>Job checks</span>
+                    </a>
+
+                    <a class="history-stat stat-privacy {% if filter_key == 'privacy' %}selected-filter{% endif %}" href="{{ url_for('history', filter='privacy') }}">
+                        <strong>{{ privacy_count }}</strong>
+                        <span>Privacy checks</span>
+                    </a>
+
+                    <a class="history-stat stat-verify {% if filter_key == 'verification' %}selected-filter{% endif %}" href="{{ url_for('history', filter='verification') }}">
+                        <strong>{{ verification_count }}</strong>
+                        <span>Verification checks</span>
+                    </a>
+
+                </div>
+
+                <p class="history-page-status">
+                    Showing {{ ((page - 1) * per_page) + 1 }}–{{ [page * per_page, total_records] | min }} of {{ total_records }} analyses
+                </p>
+
+                {% for record in records %}
+
+                <div class="history-record">
+
+                    {% if record.type == "Resume Privacy Analysis" %}
+                        {% set record_icon = "📄" %}
+                    {% elif record.type == "Recruiter Email Verification" %}
+                        {% set record_icon = "📧" %}
+                    {% elif record.type == "Company Website Verification" %}
+                        {% set record_icon = "🌐" %}
+                    {% else %}
+                        {% set record_icon = "🔍" %}
+                    {% endif %}
+
+                    <div class="history-record-header">
+                        <h3>{{ record_icon }} Record #{{ record.id }}</h3>
+                        <span class="history-module-badge">{{ record_icon }} {{ record.type }}</span>
+                    </div>
+
+                    <p>
+                        <strong>Analysis Type:</strong>
+                        <span class="history-type-label">{{ record_icon }} {{ record.type }}</span>
+                    </p>
+
+                    <h4>
+                        {{ record_icon }}
+                        {% if record.type == "Resume Privacy Analysis" %}
+                            Analyzed Resume
+                        {% elif record.type == "Recruiter Email Verification" %}
+                            Analyzed Email
+                        {% elif record.type == "Company Website Verification" %}
+                            Analyzed Website
+                        {% else %}
+                            Analyzed Job Content
+                        {% endif %}
+                    </h4>
+
+                    <div class="input-preview">
+                        {{ record.input_text }}
+                    </div>
+
+                    {% if record.type == "Job Scam Detection" %}
+
+                        <p>
+                            <strong>Prediction:</strong>
+                            {{ record.result.get("prediction", "N/A") }}
+                        </p>
+
+                        <p>
+                            <strong>Confidence:</strong>
+                            {{ record.result.get("confidence", "N/A") }}%
+                        </p>
+
+                        <p>
+                            <strong>Risk Score:</strong>
+                            {{ record.result.get("risk_score", "N/A") }}/100
+                        </p>
+
+                        <p>
+                            <strong>Risk Level:</strong>
+                            {{ record.result.get("risk_level", "N/A") }}
+                        </p>
+                        <p>
+                            <strong>Overall Assessment:</strong>
+                             {{ record.result.get("overall_assessment", "Not available") }}
+                        </p>
+                        <h4>⚠️ Warning Reasons</h4>
+
+                        {% if record.result.get("reasons") %}
+
+                            <ul>
+
+                                {% for reason in record.result.get("reasons") %}
+
+                                    <li>{{ reason }}</li>
+
+                                {% endfor %}
+
+                            </ul>
+
+                        {% else %}
+
+                            <p>No specific warning signals detected.</p>
+
+                        {% endif %}
+
+                    {% elif record.type == "Resume Privacy Analysis" %}
+
+                        <p>
+                            <strong>Privacy Score:</strong>
+                            {{ record.result.get("privacy_score", "N/A") }}/100
+                        </p>
+
+                        <h4>📋 Detected Information</h4>
+
+                        {% if record.result.get("findings") %}
+
+                            <ul>
+
+                                {% for finding in record.result.get("findings") %}
+
+                                    <li>
+                                        {{ finding.get("message", "Information detected") }}
+                                        (Count: {{ finding.get("count", 0) }})
+                                    </li>
+
+                                {% endfor %}
+
+                            </ul>
+
+                        {% else %}
+
+                            <p>No sensitive information detected.</p>
+
+                        {% endif %}
+
+                    {% elif record.type == "Recruiter Email Verification" %}
+
+                        <p>
+                            <strong>Email:</strong>
+                            {{ record.result.get("email", "N/A") }}
+                        </p>
+
+                        <p>
+                            <strong>Valid Format:</strong>
+                            {{ "Yes" if record.result.get("valid_format") else "No" }}
+                        </p>
+
+                        <p>
+                            <strong>Email Type:</strong>
+                            {{ record.result.get("email_type", "N/A") }}
+                        </p>
+
+                        <p>
+                            <strong>Message:</strong>
+                            {{ record.result.get("message", "N/A") }}
+                        </p>
+
+                    {% elif record.type == "Company Website Verification" %}
+
+                        <p>
+                            <strong>Website:</strong>
+                            {{ record.result.get("url", "N/A") }}
+                        </p>
+
+                        <p>
+                            <strong>Domain:</strong>
+                            {{ record.result.get("domain", "N/A") }}
+                        </p>
+
+                        <p>
+                            <strong>Valid Format:</strong>
+                            {{ "Yes" if record.result.get("valid_format") else "No" }}
+                        </p>
+
+                        <p>
+                            <strong>HTTPS Enabled:</strong>
+                            {{ "Yes" if record.result.get("uses_https") else "No" }}
+                        </p>
+
+                        <p>
+                            <strong>Message:</strong>
+                            {{ record.result.get("message", "N/A") }}
+                        </p>
+
+                    {% else %}
+
+                        <p>
+                            <strong>Result:</strong>
+                            {{ record.result }}
+                        </p>
+
+                    {% endif %}
+
+                    <p>
+                        <strong>Date:</strong>
+                        {{ record.date }}
+                    </p>
+
+                </div>
+
+                {% endfor %}
+
+                {% if total_pages > 1 %}
+
+                <nav class="pagination" aria-label="Analysis history pages">
+
+                    {% if page > 1 %}
+                        <a href="{{ url_for('history', filter=filter_key, page=page - 1) }}" aria-label="Previous page">← Previous</a>
+                    {% endif %}
+
+                    {% for page_number in range(1, total_pages + 1) %}
+                        <a
+                            href="{{ url_for('history', filter=filter_key, page=page_number) }}"
+                            class="{% if page_number == page %}active-page{% endif %}"
+                            {% if page_number == page %}aria-current="page"{% endif %}
+                        >{{ page_number }}</a>
+                    {% endfor %}
+
+                    {% if page < total_pages %}
+                        <a href="{{ url_for('history', filter=filter_key, page=page + 1) }}" aria-label="Next page">Next →</a>
+                    {% endif %}
+
+                </nav>
+
+                {% endif %}
+
+            {% else %}
+
+                <p>No analysis history available.</p>
+
+            {% endif %}
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

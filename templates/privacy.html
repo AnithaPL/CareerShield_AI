@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Resume Privacy Analyzer</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header class="hero">
+        <div class="logo">🛡️</div>
+
+        <h1>CareerShield <span>AI</span></h1>
+
+        <h2>Resume Privacy Analyzer</h2>
+
+        <p>Identify sensitive information in your resume.</p>
+    </header>
+
+    <main class="container">
+
+        <nav class="navigation">
+            <a href="/">🏠 Home</a>
+            <a href="/analyze">🔍 Job Scam Detection</a>
+            <a href="/privacy">🛡️ Resume Privacy</a>
+            <a href="/email">📧 Email Verification</a>
+            <a href="/website">🌐 Website Verification</a>
+            <a href="/history">📊 History</a>
+            <a href="{{ url_for('logout') }}">🚪 Log Out</a>
+        </nav>
+
+        <section class="analyzer">
+
+            <h2>Analyze Your Resume</h2>
+
+            <form method="POST">
+
+                <label for="resume_text">Paste Resume Text:</label>
+
+                <textarea
+                    id="resume_text"
+                    name="resume_text"
+                    rows="10"
+                    placeholder="Paste your resume text here..."
+                    required
+                ></textarea>
+
+                <button type="submit">🔍 Analyze Resume</button>
+
+            </form>
+
+        </section>
+
+        {% if result %}
+
+        <section class="result-card">
+
+            <div class="result-header">
+                <h2>🛡️ Privacy Analysis</h2>
+                <span>Analysis Completed</span>
+            </div>
+
+            <div class="result-content">
+
+                <!-- Privacy Score -->
+
+                <div class="privacy-score-panel">
+
+                    <div
+                        class="privacy-donut {% if result.privacy_score >= 70 %}privacy-high{% elif result.privacy_score >= 40 %}privacy-medium{% else %}privacy-low{% endif %}"
+                        style="--privacy-score: {{ result.privacy_score }}%;"
+                        role="img"
+                        aria-label="Privacy risk score: {{ result.privacy_score }} out of 100"
+                    >
+                        <div class="privacy-donut-center">
+                            <strong>{{ result.privacy_score }}</strong>
+                            <span>/ 100</span>
+                        </div>
+                    </div>
+
+                    <div class="privacy-score-copy">
+                        <p>Privacy Risk Score</p>
+
+                        <h2>
+                            {% if result.privacy_score >= 70 %}
+                                High Exposure
+                            {% elif result.privacy_score >= 40 %}
+                                Review Needed
+                            {% else %}
+                                Lower Exposure
+                            {% endif %}
+                        </h2>
+
+                        <span class="privacy-count">
+                            {{ result.findings|length }} sensitive categories detected
+                        </span>
+
+                    {% if result.privacy_score >= 70 %}
+
+                        <h3>🔴 High Privacy Risk</h3>
+
+                    {% elif result.privacy_score >= 40 %}
+
+                        <h3>🟠 Medium Privacy Risk</h3>
+
+                    {% else %}
+
+                        <h3>🟢 Low Privacy Risk</h3>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+                <!-- Detected Information -->
+
+                <div class="explanation-box">
+
+                    <h3>📋 Detected Information</h3>
+
+                    {% if result.findings %}
+
+                    <ul>
+
+                        {% for finding in result.findings %}
+
+                        <li>
+                            {{ finding.message }}
+                        </li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                    {% else %}
+
+                    <p>
+                        🟢 No sensitive information detected in the
+                        submitted resume.
+                    </p>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- Privacy Assessment -->
+
+                <div class="explanation-box">
+
+                    <h3>🛡️ Privacy Assessment</h3>
+
+                    {% if result.privacy_score >= 70 %}
+
+                    <p>
+                        🔴 Your resume contains potentially sensitive
+                        personal or financial information.
+                        Remove unnecessary details before sharing
+                        it with recruiters.
+                    </p>
+
+                    {% elif result.privacy_score >= 40 %}
+
+                    <p>
+                        🟠 Your resume contains some information
+                        that requires additional caution.
+                        Review the detected items before sharing.
+                    </p>
+
+                    {% else %}
+
+                    <p>
+                        🟢 No major privacy warning was detected.
+                        Continue reviewing your resume before
+                        sharing it online.
+                    </p>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- Recommended Actions -->
+
+                <div class="explanation-box">
+
+                    <h3>✅ Recommended Actions</h3>
+
+                    <ul>
+
+                        <li>
+                            Remove Aadhaar, PAN, passport, and bank
+                            account details from your resume.
+                        </li>
+
+                        <li>
+                            Share only the information required
+                            for legitimate recruitment.
+                        </li>
+
+                        <li>
+                            Verify the recruiter and company
+                            before sharing personal documents.
+                        </li>
+
+                        <li>
+                            Avoid sending sensitive information
+                            through unknown WhatsApp or Telegram
+                            accounts.
+                        </li>
+
+                        <li>
+                            Keep your education, skills,
+                            experience, and professional achievements.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <!-- Important Safety Message -->
+
+                <div class="caution-box">
+
+                    🛡️ <strong>Important Safety Message</strong>
+
+                    <p>
+                        Do not share identity documents, banking
+                        information, or other sensitive personal
+                        details with unknown recruiters.
+                        Verify the organization independently
+                        before submitting personal information.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        {% endif %}
+
+    </main>
+
+</body>
+
+</html>

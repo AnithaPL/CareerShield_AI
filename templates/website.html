@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Company Website Verification</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header class="hero">
+        <div class="logo">🛡️</div>
+
+        <h1>CareerShield <span>AI</span></h1>
+
+        <h2>Company Website Verification</h2>
+
+        <p>Check website URL format and HTTPS usage.</p>
+    </header>
+
+    <main class="container">
+
+        <nav class="navigation">
+    <a href="/">🏠 Home</a>
+    <a href="/analyze">🔍 Job Scam Detection</a>
+
+    <a href="/privacy">🛡️ Resume Privacy</a>
+
+    <a href="/email">📧 Email Verification</a>
+
+    <a href="/website">🌐 Website Verification</a>
+
+    <a href="/history">📊 History</a>
+    <a href="{{ url_for('logout') }}">🚪 Log Out</a>
+</nav>
+
+        <section class="analyzer">
+
+            <h2>Verify Company Website</h2>
+
+            <form method="POST">
+
+                <label for="url">Company Website URL:</label>
+
+                <input
+                    type="text"
+                    id="url"
+                    name="url"
+                    placeholder="https://example.com"
+                    required
+                    style="width: 100%; padding: 15px; border: 1px solid #bfdbfe; border-radius: 10px; font-size: 15px;"
+                >
+
+                <button type="submit">🌐 Verify Website</button>
+
+            </form>
+
+        </section>
+
+        {% if result %}
+
+        <section class="result-card">
+
+            <div class="result-header">
+                <h2>🌐 Website Result</h2>
+                <span>Analysis Completed</span>
+            </div>
+
+            <div class="result-content">
+
+                <div class="verification-summary website-summary">
+
+                    <div class="verification-icon">🌐</div>
+
+                    <div>
+                        <p>Website Domain</p>
+                        <h2>{{ result.domain }}</h2>
+                        <strong class="verification-status {% if result.valid_format and result.uses_https %}status-positive{% elif result.valid_format %}status-caution{% else %}status-negative{% endif %}">
+                            {% if not result.valid_format %}
+                                Invalid Website
+                            {% elif result.uses_https %}
+                                HTTPS Enabled
+                            {% else %}
+                                HTTPS Not Enabled
+                            {% endif %}
+                        </strong>
+                    </div>
+
+                </div>
+
+                <div class="explanation-box">
+
+                    <h3>📋 Verification Details</h3>
+
+                    <p>
+                        <strong>Valid Format:</strong>
+                        {{ "Yes" if result.valid_format else "No" }}
+                    </p>
+
+                    <p>
+                        <strong>HTTPS Enabled:</strong>
+                        <span class="status-pill">{{ "Yes" if result.uses_https else "No" }}</span>
+                    </p>
+
+                    <p>{{ result.message }}</p>
+
+                </div>
+
+                <div class="caution-box">
+                    🛡️ HTTPS does not guarantee that a company is genuine.
+                    Verify the organization using independent, trusted sources.
+                </div>
+
+            </div>
+
+        </section>
+
+        {% endif %}
+
+    </main>
+
+</body>
+
+</html>
