@@ -1,0 +1,11 @@
+Flask==3.1.1
+pandas==2.3.1
+scikit-learn==1.7.1
+joblib==1.5.1
+PyMuPDF==1.26.3
+Pillow==11.3.0
+pytesseract==0.3.13
+dnspython==2.7.0
+requests==2.32.4
+beautifulsoup4==4.13.4
+python-dotenv==1.1.1

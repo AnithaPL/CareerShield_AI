@@ -4,3 +4,6 @@ __pycache__/
 history.db
 .env
 .venv/
+career_shield.db
+uploads/*
+!uploads/.gitkeep
