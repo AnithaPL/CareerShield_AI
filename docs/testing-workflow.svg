@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0 0 L12 6 L0 12 Z" fill="#315675"/>
+    </marker>
+    <style>
+      .title{font:700 42px Arial,sans-serif;fill:#17324d}
+      .subtitle{font:400 22px Arial,sans-serif;fill:#526b80}
+      .heading{font:700 23px Arial,sans-serif;fill:#fff}
+      .body{font:400 19px Arial,sans-serif;fill:#17324d}
+      .small{font:400 17px Arial,sans-serif;fill:#526b80}
+      .box{stroke:#d2dee8;stroke-width:2;rx:16}
+      .arrow{stroke:#315675;stroke-width:4;fill:none;marker-end:url(#arrow)}
+      .line{stroke:#315675;stroke-width:4;fill:none}
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="#f2f5f8"/>
+  <rect width="1600" height="118" fill="#fff"/>
+  <rect y="114" width="1600" height="4" fill="#0a66c2"/>
+  <text x="800" y="62" text-anchor="middle" class="title">CareerShield AI - Testing Workflow</text>
+  <text x="800" y="96" text-anchor="middle" class="subtitle">Proposed manual functional testing for the current application</text>
+
+  <rect x="70" y="250" width="270" height="150" fill="#236b8e" class="box"/>
+  <text x="205" y="295" text-anchor="middle" class="heading">1. Prepare Input</text>
+  <text x="205" y="335" text-anchor="middle" class="body" fill="#fff">Use safe sample data</text>
+  <text x="205" y="368" text-anchor="middle" class="small" fill="#e8f4fb">Valid and invalid examples</text>
+
+  <rect x="430" y="250" width="300" height="150" fill="#0a66c2" class="box"/>
+  <text x="580" y="295" text-anchor="middle" class="heading">2. Choose Feature</text>
+  <text x="580" y="335" text-anchor="middle" class="body" fill="#fff">Login, job, resume, email,</text>
+  <text x="580" y="368" text-anchor="middle" class="body" fill="#fff">website, or history</text>
+
+  <rect x="820" y="250" width="300" height="150" fill="#d9892b" class="box"/>
+  <text x="970" y="295" text-anchor="middle" class="heading">3. Run in the App</text>
+  <text x="970" y="335" text-anchor="middle" class="body" fill="#fff">Submit through the browser</text>
+  <text x="970" y="368" text-anchor="middle" class="small" fill="#fff4e8">Check displayed result</text>
+
+  <path d="M340 325 L430 325" class="arrow"/>
+  <path d="M730 325 L820 325" class="arrow"/>
+  <path d="M1120 325 L1200 325" class="arrow"/>
+
+  <polygon points="1340,235 1480,325 1340,415 1200,325" fill="#fff" stroke="#d2dee8" stroke-width="3"/>
+  <text x="1340" y="315" text-anchor="middle" class="body">Does result</text>
+  <text x="1340" y="345" text-anchor="middle" class="body">match expectation?</text>
+
+  <path d="M1340 415 L1340 525 L1160 525" class="arrow"/>
+  <text x="1360" y="478" class="small">Yes</text>
+  <rect x="900" y="470" width="260" height="110" fill="#2d8a68" class="box"/>
+  <text x="1030" y="515" text-anchor="middle" class="heading">PASS</text>
+  <text x="1030" y="548" text-anchor="middle" class="body" fill="#fff">Record the outcome</text>
+
+  <path d="M1340 235 L1340 190 L970 190 L970 250" class="arrow"/>
+  <text x="1380" y="210" class="small">No: fix and retest</text>
+
+  <rect x="70" y="660" width="700" height="155" fill="#fff" class="box"/>
+  <rect x="70" y="660" width="700" height="10" fill="#0a66c2"/>
+  <text x="105" y="710" class="body" font-weight="700">Example checks</text>
+  <text x="105" y="750" class="small">Login accepts valid credentials; protected pages require login.</text>
+  <text x="105" y="782" class="small">Analysis results and history display for the signed-in user.</text>
+
+  <rect x="830" y="660" width="700" height="155" fill="#fff" class="box"/>
+  <rect x="830" y="660" width="700" height="10" fill="#d9892b"/>
+  <text x="865" y="710" class="body" font-weight="700">Model evaluation (already in train_model.py)</text>
+  <text x="865" y="750" class="small">Reports accuracy, classification results, and a confusion matrix</text>
+  <text x="865" y="782" class="small">using a held-out portion of the labeled job-posting dataset.</text>
+</svg>

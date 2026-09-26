@@ -75,6 +75,20 @@ def get_user(username):
     return user
 
 
+def update_user_password(username, password_hash):
+    connection = sqlite3.connect(DATABASE)
+
+    try:
+        cursor = connection.execute(
+            "UPDATE users SET password_hash = ? WHERE username = ?",
+            (password_hash, username)
+        )
+        connection.commit()
+        return cursor.rowcount > 0
+    finally:
+        connection.close()
+
+
 def save_analysis(user_id, analysis_type, input_text, result):
     connection = sqlite3.connect(DATABASE)
 

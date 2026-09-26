@@ -864,6 +864,16 @@ button:hover {
     text-align: center;
 }
 
+.auth-success {
+    margin-top: 18px;
+    padding: 12px;
+    border: 1px solid #bbf7d0;
+    border-radius: 8px;
+    background: #f0fdf4;
+    color: #166534;
+    text-align: center;
+}
+
 .auth-switch {
     margin: 22px 0 0;
     font-size: 14px;
@@ -913,23 +923,19 @@ button:hover {
 /* Classic CareerShield dashboard skin */
 
 :root {
-    --dashboard-bg: #b9e9f7;
+    --dashboard-bg: #f2f5f8;
     --dashboard-panel: #ffffff;
-    --dashboard-panel-soft: #effaff;
-    --dashboard-line: #a8dff3;
-    --dashboard-text: #073b66;
-    --dashboard-muted: #41677d;
-    --dashboard-accent: #13b9d2;
-    --dashboard-accent-deep: #087fc1;
+    --dashboard-panel-soft: #f7f9fb;
+    --dashboard-line: #d8e1e9;
+    --dashboard-text: #17324d;
+    --dashboard-muted: #586d80;
+    --dashboard-accent: #e9a23b;
+    --dashboard-accent-deep: #0a66c2;
 }
 
 body {
     background-color: var(--dashboard-bg);
-    background-image:
-        radial-gradient(circle at 50% 18%, rgba(87, 235, 255, 0.48), transparent 22%),
-        radial-gradient(circle at 92% 4%, rgba(37, 153, 220, 0.34), transparent 30%),
-        linear-gradient(135deg, #9ed9ef 0%, #c9f1fa 48%, #8fcce5 100%);
-    background-size: auto, auto, auto;
+    background-image: linear-gradient(135deg, #e7f0fa 0%, #f8fafc 100%);
     background-attachment: fixed;
     color: var(--dashboard-text);
     font-family: "Trebuchet MS", Arial, sans-serif;
@@ -937,11 +943,9 @@ body {
 
 .hero {
     padding: 32px 20px 28px;
-    background:
-        radial-gradient(circle at 50% 0%, rgba(66, 232, 255, 0.35), transparent 42%),
-        linear-gradient(120deg, rgba(225, 250, 255, 0.98), rgba(174, 229, 244, 0.95));
-    border-bottom: 1px solid rgba(8, 127, 193, 0.28);
-    box-shadow: 0 10px 32px rgba(8, 127, 193, 0.16);
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.82), rgba(233, 240, 247, 0.76));
+    border-bottom: 1px solid rgba(10, 102, 194, 0.16);
+    box-shadow: 0 8px 24px rgba(23, 50, 77, 0.07);
 }
 
 .hero h1 {
@@ -1004,8 +1008,8 @@ body {
 .auth-card {
     border: 1px solid var(--dashboard-line);
     border-radius: 14px;
-    background: linear-gradient(145deg, #ffffff, #effaff);
-    box-shadow: 0 14px 32px rgba(8, 127, 193, 0.13);
+    background: linear-gradient(145deg, #ffffff, var(--dashboard-panel-soft));
+    box-shadow: 0 14px 32px rgba(23, 50, 77, 0.08);
 }
 
 .feature-card {
@@ -1035,8 +1039,8 @@ body {
     padding: 28px;
     border: 1px solid var(--dashboard-line);
     border-radius: 14px;
-    background: linear-gradient(120deg, #ffffff, #dff8ff);
-    box-shadow: 0 12px 28px rgba(8, 127, 193, 0.1);
+    background: linear-gradient(120deg, #ffffff, #edf3f8);
+    box-shadow: 0 12px 28px rgba(23, 50, 77, 0.07);
 }
 
 .dashboard-intro h2 {

@@ -1,4 +1,5 @@
 
+import hmac
 import os
 from functools import wraps
 
@@ -9,13 +10,21 @@ from privacy_analyzer import analyze_resume
 from email_verifier import verify_email
 from website_verifier import verify_website
 
-from history_db import create_table, create_user, get_history, get_user, save_analysis
+from history_db import (
+    create_table,
+    create_user,
+    get_history,
+    get_user,
+    save_analysis,
+    update_user_password,
+)
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get(
     "CAREERSHIELD_SECRET_KEY",
     "career-shield-development-key"
 )
+app.config["PASSWORD_RESET_KEY"] = os.environ.get("CAREERSHIELD_RESET_KEY")
 
 create_table()
 
@@ -71,6 +80,41 @@ def login():
             return redirect(request.args.get("next") or url_for("home"))
 
     return render_template("login.html", error=error)
+
+
+@app.route("/reset-password", methods=["GET", "POST"])
+def reset_password():
+    error = None
+    success = None
+    reset_key = app.config["PASSWORD_RESET_KEY"]
+
+    if request.method == "POST":
+        username = request.form.get("username", "").strip().lower()
+        submitted_key = request.form.get("reset_key", "")
+        password = request.form.get("password", "")
+        confirm_password = request.form.get("confirm_password", "")
+
+        if not reset_key:
+            error = "Password reset is not enabled on this server."
+        elif not hmac.compare_digest(submitted_key, reset_key):
+            error = "Invalid reset key."
+        elif len(username) < 3:
+            error = "Enter a valid username."
+        elif len(password) < 8:
+            error = "Password must contain at least 8 characters."
+        elif password != confirm_password:
+            error = "Passwords do not match."
+        elif not update_user_password(username, generate_password_hash(password)):
+            error = "No account was found for that username."
+        else:
+            success = "Password updated. You can now log in."
+
+    return render_template(
+        "reset_password.html",
+        enabled=bool(reset_key),
+        error=error,
+        success=success
+    )
 
 
 @app.route("/logout")
