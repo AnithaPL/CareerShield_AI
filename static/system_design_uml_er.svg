@@ -1,27 +1,128 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120">
   <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0 0 12 6 0 12Z" fill="#174a6e"/>
+    </marker>
     <style>
-      .title{font:700 40px Arial,sans-serif;fill:#123b59}.sub{font:700 27px Arial,sans-serif;fill:#123b59}.head{font:700 21px Arial,sans-serif;fill:#fff}.body{font:400 17px Arial,sans-serif;fill:#17324d}.small{font:400 16px Arial,sans-serif;fill:#3d5d70}.box{stroke:#a9bfce;stroke-width:2;rx:12}.line{stroke:#174a6e;stroke-width:3;fill:none}
+      .title{font:700 38px Arial,sans-serif;fill:#123b59}
+      .sub{font:700 27px Arial,sans-serif;fill:#123b59}
+      .head{font:700 20px Arial,sans-serif;fill:#fff}
+      .body{font:400 17px Arial,sans-serif;fill:#17324d}
+      .small{font:400 15px Arial,sans-serif;fill:#3d5d70}
+      .box{stroke:#a9bfce;stroke-width:2;rx:12}
+      .arrow{stroke:#174a6e;stroke-width:2.5;fill:none;marker-end:url(#arrow)}
+      .relation{stroke:#174a6e;stroke-width:3;fill:none}
     </style>
   </defs>
-  <rect width="1600" height="900" fill="#f4f8fb"/><rect width="1600" height="112" fill="#fff"/><rect y="108" width="1600" height="4" fill="#287aa8"/>
-  <text x="800" y="58" text-anchor="middle" class="title">CareerShield AI - UML and ER Design</text><text x="800" y="91" text-anchor="middle" class="small">Current Flask modules, route operations, and SQLite schema</text>
+  <rect width="1600" height="1120" fill="#f4f8fb"/>
+  <rect width="1600" height="105" fill="#fff"/>
+  <rect y="101" width="1600" height="4" fill="#287aa8"/>
+  <text x="800" y="58" text-anchor="middle" class="title">CareerShield AI - UML and ER Design</text>
+  <text x="800" y="86" text-anchor="middle" class="small">Function-based Flask modules, supporting components, and current SQLite schema</text>
 
-  <text x="400" y="160" text-anchor="middle" class="sub">UML Module / Component View</text>
-  <rect x="55" y="205" width="270" height="205" fill="#236b8e" class="box"/><text x="190" y="242" text-anchor="middle" class="head">Flask Route Module</text><text x="75" y="276" class="small" fill="#fff">+ register(), login()</text><text x="75" y="300" class="small" fill="#fff">+ reset_password(), logout()</text><text x="75" y="324" class="small" fill="#fff">+ home(), analyze(), privacy()</text><text x="75" y="348" class="small" fill="#fff">+ email_verification()</text><text x="75" y="372" class="small" fill="#fff">+ website_verification()</text><text x="75" y="396" class="small" fill="#fff">+ history()</text>
-  <rect x="390" y="205" width="300" height="170" fill="#e67e22" class="box"/><text x="540" y="242" text-anchor="middle" class="head">Job Analyzer</text><text x="415" y="282" class="body" fill="#fff">+ analyze_job(text)</text><text x="415" y="313" class="body" fill="#fff">ML prediction</text><text x="415" y="344" class="body" fill="#fff">Rule-based warnings</text><text x="415" y="366" class="small" fill="#fff4e8">Risk score and final label</text>
-  <rect x="755" y="205" width="300" height="170" fill="#3b8c75" class="box"/><text x="905" y="242" text-anchor="middle" class="head">Analyzer Modules</text><text x="780" y="282" class="body" fill="#fff">+ analyze_job(text)</text><text x="780" y="313" class="body" fill="#fff">+ analyze_resume(text)</text><text x="780" y="344" class="body" fill="#fff">+ verify_email(email)</text><text x="780" y="366" class="small" fill="#eaf8f2">+ verify_website(url)</text>
-  <rect x="1120" y="205" width="400" height="170" fill="#123b59" class="box"/><text x="1320" y="242" text-anchor="middle" class="head">history_db.py</text><text x="1145" y="282" class="small" fill="#fff">+ create_table(), create_user()</text><text x="1145" y="310" class="small" fill="#fff">+ get_user(), update_user_password()</text><text x="1145" y="338" class="small" fill="#fff">+ save_analysis(), get_history()</text><text x="1145" y="366" class="small" fill="#dcecf7">SQLite persistence API</text>
-  <path d="M325 290 L390 290" class="line"/><path d="M295 410 L295 420 L905 420 L905 375" class="line"/><path d="M310 410 L310 432 L1320 432 L1320 375" class="line"/>
-  <text x="357" y="278" text-anchor="middle" class="small">calls</text><text x="800" y="414" text-anchor="middle" class="small">Flask routes also call verification modules and history API</text>
+  <text x="800" y="150" text-anchor="middle" class="sub">UML Module / Component View</text>
 
-  <text x="800" y="455" text-anchor="middle" class="sub">Entity-Relationship Diagram</text>
-  <rect x="100" y="510" width="500" height="290" fill="#fff" class="box"/><rect x="100" y="510" width="500" height="55" fill="#236b8e" class="box"/><text x="350" y="545" text-anchor="middle" class="head">users</text>
-  <text x="130" y="605" class="body">id</text><text x="130" y="641" class="body">username</text><text x="130" y="677" class="body">password_hash</text><text x="130" y="713" class="body">created_at</text>
-  <text x="330" y="605" class="small">INTEGER PRIMARY KEY AUTOINCREMENT</text><text x="330" y="641" class="small">TEXT NOT NULL UNIQUE</text><text x="330" y="677" class="small">TEXT NOT NULL</text><text x="330" y="713" class="small">TIMESTAMP DEFAULT CURRENT_TIMESTAMP</text>
-  <rect x="1000" y="510" width="500" height="290" fill="#fff" class="box"/><rect x="1000" y="510" width="500" height="55" fill="#2b78a9" class="box"/><text x="1250" y="545" text-anchor="middle" class="head">analysis_history</text>
-  <text x="1030" y="598" class="body">id</text><text x="1030" y="630" class="body">user_id</text><text x="1030" y="662" class="body">analysis_type</text><text x="1030" y="694" class="body">input_text</text><text x="1030" y="726" class="body">result</text><text x="1030" y="758" class="body">created_at</text>
-  <text x="1230" y="598" class="small">INTEGER PRIMARY KEY AUTOINCREMENT</text><text x="1230" y="630" class="small">INTEGER NULL, FK -&gt; users.id</text><text x="1230" y="662" class="small">TEXT NOT NULL</text><text x="1230" y="694" class="small">TEXT NOT NULL</text><text x="1230" y="726" class="small">TEXT NOT NULL (stringified result)</text><text x="1230" y="758" class="small">TIMESTAMP DEFAULT CURRENT_TIMESTAMP</text>
-  <path d="M600 655 L1000 655" class="line"/><text x="800" y="640" text-anchor="middle" class="small">one user to zero-or-many records; user_id is nullable</text>
-  <text x="800" y="842" text-anchor="middle" class="small">No email or reset token is stored; reset authorization uses CAREERSHIELD_RESET_KEY from the server environment.</text>
+  <rect x="45" y="190" width="365" height="300" fill="#236b8e" class="box"/>
+  <text x="227" y="228" text-anchor="middle" class="head">Flask Routes (app.py)</text>
+  <text x="70" y="266" class="body">+ register(), login(), logout()</text>
+  <text x="70" y="296" class="body">+ reset_password(), home()</text>
+  <text x="70" y="326" class="body">+ analyze(), privacy()</text>
+  <text x="70" y="356" class="body">+ email_verification()</text>
+  <text x="70" y="386" class="body">+ website_verification()</text>
+  <text x="70" y="416" class="body">+ history()</text>
+  <text x="70" y="463" class="small" fill="#e8f4fb">Routes authenticate, dispatch, render, and persist.</text>
+
+  <rect x="475" y="190" width="310" height="145" fill="#e67e22" class="box"/>
+  <text x="630" y="228" text-anchor="middle" class="head">Job Analyzer</text>
+  <text x="500" y="267" class="body">+ analyze_job(text)</text>
+  <text x="500" y="297" class="body">ML prediction + rule checks</text>
+  <text x="500" y="322" class="small" fill="#fff4e8">Confidence, risk score, reasons</text>
+
+  <rect x="475" y="375" width="310" height="115" fill="#9b6b32" class="box"/>
+  <text x="630" y="412" text-anchor="middle" class="head">Scam Pipeline Artifact</text>
+  <text x="500" y="450" class="body">TF-IDF + Logistic Regression</text>
+  <text x="500" y="477" class="small" fill="#fff4e8">models/scam_pipeline.joblib</text>
+
+  <rect x="850" y="190" width="315" height="90" fill="#3b8c75" class="box"/>
+  <text x="1007" y="226" text-anchor="middle" class="head">Privacy Analyzer</text>
+  <text x="875" y="258" class="body">+ analyze_resume(text)</text>
+
+  <rect x="850" y="310" width="315" height="90" fill="#3b8c75" class="box"/>
+  <text x="1007" y="346" text-anchor="middle" class="head">Email Verifier</text>
+  <text x="875" y="378" class="body">+ verify_email(email)</text>
+
+  <rect x="850" y="430" width="315" height="90" fill="#3b8c75" class="box"/>
+  <text x="1007" y="466" text-anchor="middle" class="head">Website Verifier</text>
+  <text x="875" y="498" class="body">+ verify_website(url)</text>
+
+  <rect x="1230" y="190" width="325" height="180" fill="#123b59" class="box"/>
+  <text x="1392" y="228" text-anchor="middle" class="head">History Database API</text>
+  <text x="1255" y="267" class="body">+ create_table(), create_user()</text>
+  <text x="1255" y="297" class="body">+ get_user(), update_user_password()</text>
+  <text x="1255" y="327" class="body">+ save_analysis(), get_history()</text>
+  <text x="1255" y="354" class="small" fill="#dcecf7">history_db.py</text>
+
+  <rect x="1230" y="420" width="325" height="100" fill="#7a5a9e" class="box"/>
+  <text x="1392" y="456" text-anchor="middle" class="head">SQLite Database</text>
+  <text x="1255" y="490" class="body">users / analysis_history</text>
+
+  <rect x="45" y="535" width="500" height="80" fill="#2b78a9" class="box"/>
+  <text x="295" y="568" text-anchor="middle" class="head">Signed Flask Session</text>
+  <text x="70" y="597" class="body">user_id, username in signed browser cookie</text>
+
+  <rect x="580" y="535" width="585" height="80" fill="#7a5a9e" class="box"/>
+  <text x="872" y="568" text-anchor="middle" class="head">Server Environment Configuration</text>
+  <text x="605" y="597" class="body">CAREERSHIELD_RESET_KEY (local password-reset authorization)</text>
+
+  <path d="M410 260H475" class="arrow"/>
+  <path d="M410 315H825V235H850" class="arrow"/>
+  <path d="M410 345H825V355H850" class="arrow"/>
+  <path d="M410 375H825V475H850" class="arrow"/>
+  <path d="M785 260H810V435H785" class="arrow"/>
+  <path d="M410 475V525H1195V280H1230" class="arrow"/>
+  <path d="M1392 370V420" class="arrow"/>
+  <path d="M295 490V535" class="arrow"/>
+  <path d="M580 575H560V630H420V480H410" class="arrow"/>
+  <text x="442" y="248" class="small">calls</text>
+  <text x="1180" y="510" text-anchor="end" class="small">history / account operations</text>
+  <text x="520" y="622" text-anchor="middle" class="small">reset authorization</text>
+  <text x="800" y="642" text-anchor="middle" class="small">Analyzer components are Python functions; the scam pipeline is loaded from the model artifact.</text>
+  <path d="M40 665H1560" stroke="#c6d6e0" stroke-width="2"/>
+
+  <text x="800" y="710" text-anchor="middle" class="sub">Entity-Relationship Diagram (SQLite)</text>
+
+  <rect x="120" y="760" width="570" height="280" fill="#fff" class="box"/>
+  <path d="M120 772Q120 760 132 760H678Q690 760 690 772V815H120Z" fill="#236b8e" class="box"/>
+  <text x="405" y="797" text-anchor="middle" class="head">users</text>
+  <text x="150" y="855" class="body">id</text>
+  <text x="150" y="893" class="body">username</text>
+  <text x="150" y="931" class="body">password_hash</text>
+  <text x="150" y="969" class="body">created_at</text>
+  <text x="360" y="855" class="small">INTEGER PRIMARY KEY AUTOINCREMENT</text>
+  <text x="360" y="893" class="small">TEXT NOT NULL UNIQUE</text>
+  <text x="360" y="931" class="small">TEXT NOT NULL (Werkzeug hash)</text>
+  <text x="360" y="969" class="small">TIMESTAMP DEFAULT CURRENT_TIMESTAMP</text>
+
+  <rect x="910" y="760" width="570" height="280" fill="#fff" class="box"/>
+  <path d="M910 772Q910 760 922 760H1468Q1480 760 1480 772V815H910Z" fill="#2b78a9" class="box"/>
+  <text x="1195" y="797" text-anchor="middle" class="head">analysis_history</text>
+  <text x="940" y="847" class="body">id</text>
+  <text x="940" y="881" class="body">user_id</text>
+  <text x="940" y="915" class="body">analysis_type</text>
+  <text x="940" y="949" class="body">input_text</text>
+  <text x="940" y="983" class="body">result</text>
+  <text x="940" y="1017" class="body">created_at</text>
+  <text x="1110" y="847" class="small">INTEGER PRIMARY KEY AUTOINCREMENT</text>
+  <text x="1110" y="881" class="small">INTEGER NULL, FK -&gt; users.id</text>
+  <text x="1110" y="915" class="small">TEXT NOT NULL</text>
+  <text x="1110" y="949" class="small">TEXT NOT NULL</text>
+  <text x="1110" y="983" class="small">TEXT NOT NULL (stringified result)</text>
+  <text x="1110" y="1017" class="small">TIMESTAMP DEFAULT CURRENT_TIMESTAMP</text>
+
+  <path d="M690 900H910" class="relation"/>
+  <text x="800" y="875" text-anchor="middle" class="small">users.id → analysis_history.user_id</text>
+  <text x="695" y="925" class="small">1</text>
+  <text x="890" y="925" class="small">0..*</text>
+
+  <text x="800" y="1080" text-anchor="middle" class="small">user_id is nullable; SQLite foreign-key enforcement is not explicitly enabled. No email or reset key is stored in these tables.</text>
 </svg>
