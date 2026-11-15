@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">CareerShield AI shield</title>
+  <defs>
+    <filter id="shadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="7"/>
+    </filter>
+    <clipPath id="shield-shape">
+      <path d="M37 13h54l8 13 15 9v32c0 25-19 44-50 57C33 111 14 92 14 67V35l15-9 8-13Z"/>
+    </clipPath>
+  </defs>
+  <path d="M37 13h54l8 13 15 9v32c0 25-19 44-50 57C33 111 14 92 14 67V35l15-9 8-13Z" fill="#38bdf8" opacity=".55" filter="url(#shadow)"/>
+  <g clip-path="url(#shield-shape)">
+    <path d="M10 8h54v120H10z" fill="#2563eb"/>
+    <path d="M64 8h55v120H64z" fill="#38bdf8"/>
+    <path d="M64 8v118" stroke="#174ea6" stroke-opacity=".55" stroke-width="2"/>
+  </g>
+  <path d="M37 13h54l8 13 15 9v32c0 25-19 44-50 57C33 111 14 92 14 67V35l15-9 8-13Z" fill="none" stroke="#8b8fc3" stroke-linejoin="round" stroke-width="5"/>
+  <path d="M37 16h54" stroke="#bae6fd" stroke-linecap="round" stroke-width="2" opacity=".9"/>
+</svg>

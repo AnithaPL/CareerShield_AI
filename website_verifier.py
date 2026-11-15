@@ -5,34 +5,43 @@ from urllib.parse import urlparse
 def verify_website(url):
     url = url.strip()
 
-    if not url.startswith(("http://", "https://")):
-        url = "https://" + url
-
     parsed = urlparse(url)
+    if not parsed.scheme:
+        url = "https://" + url
+        parsed = urlparse(url)
+
+    domain = parsed.netloc
+    hostname = parsed.hostname or ""
+    uses_https = parsed.scheme.lower() == "https"
 
     result = {
         "url": url,
         "valid_format": False,
-        "uses_https": parsed.scheme == "https",
-        "domain": parsed.netloc,
+        "uses_https": uses_https,
+        "https_disabled": False,
+        "domain": domain,
         "message": ""
     }
 
-    if not parsed.netloc or "." not in parsed.netloc:
+    if (
+        parsed.scheme.lower() not in ("http", "https")
+        or not hostname
+        or "." not in hostname
+    ):
         result["message"] = "Invalid website URL."
         return result
 
-    result["valid_format"] = True
+    if not uses_https:
+        result["https_disabled"] = True
+        result["message"] = (
+            "HTTPS is disabled. This URL is invalid for website verification."
+        )
+        return result
 
-    if result["uses_https"]:
-        result["message"] = (
-            "Valid URL with HTTPS. "
-            "HTTPS does not prove company authenticity."
-        )
-    else:
-        result["message"] = (
-            "Website does not use HTTPS. "
-            "Avoid sharing sensitive information."
-        )
+    result["valid_format"] = True
+    result["message"] = (
+        "Valid URL with HTTPS. "
+        "HTTPS does not prove company authenticity."
+    )
 
     return result

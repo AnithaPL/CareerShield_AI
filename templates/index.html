@@ -108,7 +108,10 @@
                         {{ result.prediction }}
                     </h2>
                     <p>
-                        ML Prediction: {{ result.ml_prediction }}
+                        ML Assessment: {{ result.ml_prediction }}
+                    </p>
+                    <p>
+                        Final prediction also considers rule-based risk indicators.
                     </p>
 
                 </div>
@@ -123,7 +126,7 @@
 
                     <div class="score-box">
 
-                        <p>Confidence</p>
+                        <p>ML Model Confidence</p>
 
                         <h2>
                             {{ result.confidence }}%

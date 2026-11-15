@@ -4,6 +4,7 @@ import re
 
 
 MODEL_PATH = "models/scam_pipeline.joblib"
+HIGH_CONFIDENCE_THRESHOLD = 90
 
 # Load the trained ML model
 model = joblib.load(MODEL_PATH)
@@ -14,9 +15,7 @@ def analyze_job(text):
     # Convert input to string
     text = str(text).strip()
 
-    # Original ML prediction (Genuine / Likely Scam)
     ml_prediction = model.predict([text])[0]
-
     probabilities = model.predict_proba([text])[0]
     confidence = max(probabilities) * 100
 
@@ -241,7 +240,7 @@ def analyze_job(text):
 
     elif (
         ml_prediction == "Likely Scam"
-        and confidence >= 75
+        and confidence >= HIGH_CONFIDENCE_THRESHOLD
     ):
         final_prediction = "Likely Scam"
 
@@ -249,12 +248,6 @@ def analyze_job(text):
         final_prediction = "Suspicious"
 
     elif ml_prediction == "Likely Scam":
-        final_prediction = "Suspicious"
-
-    elif (
-        ml_prediction == "Genuine"
-        and confidence < 70
-    ):
         final_prediction = "Suspicious"
 
     else:
@@ -288,7 +281,7 @@ def analyze_job(text):
 
     elif (
         ml_prediction == "Likely Scam"
-        and confidence >= 75
+        and confidence >= HIGH_CONFIDENCE_THRESHOLD
     ):
         final_decision = "High Risk - ML Warning"
 
@@ -311,10 +304,10 @@ def analyze_job(text):
 
     confidence_note = ""
 
-    if confidence < 70:
+    if confidence < HIGH_CONFIDENCE_THRESHOLD:
         confidence_note = (
-            "ML confidence is below 70%. "
-            "Independent verification is recommended."
+            "The ML model confidence is below 90%. Treat its assessment as "
+            "less certain and review the rule-based risk indicators."
         )
 
     # --------------------------------------------------

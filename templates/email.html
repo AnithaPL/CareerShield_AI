@@ -20,7 +20,7 @@
 
         <h2>Recruiter Email Verification</h2>
 
-        <p>Check email format and identify the email provider type.</p>
+        <p>Check email format and identify the address domain type.</p>
     </header>
 
     <main class="container">
@@ -51,7 +51,7 @@
     type="text"
     id="email"
     name="email"
-    placeholder="recruiter@example.com"
+    placeholder="hr@company.example"
     required
     style="width: 100%; padding: 15px; border: 1px solid #bfdbfe; border-radius: 10px; font-size: 15px;"
 >
@@ -97,7 +97,12 @@
                     </p>
 
                     <p>
-                        <strong>Email Type:</strong>
+                        <strong>Email Domain:</strong>
+                        {{ result.domain if result.domain else "Not detected" }}
+                    </p>
+
+                    <p>
+                        <strong>Domain Type:</strong>
                         <span class="status-pill">{{ result.email_type }}</span>
                     </p>
 
@@ -106,8 +111,10 @@
                 </div>
 
                 <div class="caution-box">
-                    🛡️ Email classification does not prove recruiter authenticity.
-                    Verify the company through official sources.
+                    Email domain classification does not confirm that a mailbox
+                    exists, that the sender controls the domain, or that a
+                    recruiter is authentic. Verify the company through official
+                    sources.
                 </div>
 
             </div>

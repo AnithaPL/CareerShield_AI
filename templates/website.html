@@ -82,7 +82,11 @@
                         <h2>{{ result.domain }}</h2>
                         <strong class="verification-status {% if result.valid_format and result.uses_https %}status-positive{% elif result.valid_format %}status-caution{% else %}status-negative{% endif %}">
                             {% if not result.valid_format %}
-                                Invalid Website
+                                {% if result.https_disabled %}
+                                    HTTPS Disabled
+                                {% else %}
+                                    Invalid Website URL
+                                {% endif %}
                             {% elif result.uses_https %}
                                 HTTPS Enabled
                             {% else %}

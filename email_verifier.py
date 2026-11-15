@@ -2,48 +2,47 @@
 import re
 
 
+PUBLIC_EMAIL_DOMAINS = {
+    "gmail.com",
+    "yahoo.com",
+    "outlook.com",
+    "hotmail.com",
+}
+
+
 def verify_email(email):
     email = email.strip().lower()
 
     result = {
         "email": email,
+        "domain": "",
         "valid_format": False,
         "email_type": "Unknown",
         "message": ""
     }
 
-    # Check email format
     pattern = r"^[^@\s]+@[^@\s]+\.[^@\s]+$"
 
     if not re.match(pattern, email):
         result["message"] = "Invalid email format."
         return result
 
-    result["valid_format"] = True
+    domain = email.rsplit("@", 1)[1]
+    result["domain"] = domain
 
-    # Extract domain
-    domain = email.split("@")[1]
-
-    # Common free email providers
-    free_providers = [
-        "gmail.com",
-        "yahoo.com",
-        "outlook.com",
-        "hotmail.com"
-    ]
-
-    if domain in free_providers:
-        result["email_type"] = "Free Email Provider"
+    if domain in PUBLIC_EMAIL_DOMAINS:
+        result["email_type"] = "Public Email Provider"
         result["message"] = (
-            "Recruiter uses a free email provider. "
-            "Verify the company independently."
+            "Invalid for recruiter domain verification: this address uses "
+            "a public email provider. Use the organization's domain instead."
         )
     else:
-        result["email_type"] = "Business Domain"
+        result["valid_format"] = True
+        result["email_type"] = "Domain-Specific Email"
         result["message"] = (
-            "Business domain detected. "
-            "Domain ownership and company authenticity "
-            "still require independent verification."
+            "This address uses a domain-specific email address. This does "
+            "not prove the sender owns the company or is legitimate; verify "
+            "the domain through an official source."
         )
 
     return result
