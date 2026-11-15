@@ -1,31 +1,109 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1050" viewBox="0 0 1600 1050">
   <defs>
-    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#174a6e"/></marker>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0 0 12 6 0 12Z" fill="#174a6e"/>
+    </marker>
     <style>
-      .title{font:700 40px Arial,sans-serif;fill:#123b59}.section{font:700 25px Arial,sans-serif;fill:#fff}.body{font:400 19px Arial,sans-serif;fill:#17324d}.small{font:400 17px Arial,sans-serif;fill:#3d5d70}.box{stroke:#a9bfce;stroke-width:2;rx:14}.arrow{stroke:#174a6e;stroke-width:4;fill:none;marker-end:url(#arrow)}.dash{stroke:#7894a5;stroke-width:3;stroke-dasharray:9 8;fill:none;marker-end:url(#arrow)}
+      .title{font:700 38px Arial,sans-serif;fill:#123b59}
+      .heading{font:700 27px Arial,sans-serif;fill:#123b59}
+      .label{font:700 21px Arial,sans-serif;fill:#fff}
+      .body{font:400 18px Arial,sans-serif;fill:#fff}
+      .note{font:400 16px Arial,sans-serif;fill:#3d5d70}
+      .box{stroke:#a9bfce;stroke-width:2;rx:14}
+      .arrow{stroke:#174a6e;stroke-width:3;fill:none;marker-end:url(#arrow)}
+      .line{stroke:#174a6e;stroke-width:3;fill:none}
+      .decision{stroke:#a9bfce;stroke-width:2}
     </style>
   </defs>
-  <rect width="1600" height="900" fill="#f4f8fb"/>
-  <rect width="1600" height="112" fill="#fff"/><rect y="108" width="1600" height="4" fill="#287aa8"/>
+  <rect width="1600" height="1050" fill="#f4f8fb"/>
+  <rect width="1600" height="105" fill="#fff"/>
+  <rect y="101" width="1600" height="4" fill="#287aa8"/>
   <text x="800" y="58" text-anchor="middle" class="title">CareerShield AI - DFD and Flowchart</text>
-  <text x="800" y="91" text-anchor="middle" class="small">Current Flask routes, analyzers, authentication, and SQLite data flow</text>
+  <text x="800" y="86" text-anchor="middle" class="note">Aligned with the current Flask routes, analyzer modules, and SQLite operations</text>
 
-  <text x="400" y="160" text-anchor="middle" class="title" style="font-size:28px">Level 0 Data Flow Diagram</text>
-  <rect x="55" y="205" width="200" height="105" fill="#236b8e" class="box"/><text x="155" y="250" text-anchor="middle" class="section">User</text><text x="155" y="282" text-anchor="middle" class="body" fill="#fff">Recruitment data</text>
-  <rect x="330" y="190" width="300" height="135" fill="#2b78a9" class="box"/><text x="480" y="238" text-anchor="middle" class="section">CareerShield AI</text><text x="480" y="273" text-anchor="middle" class="body" fill="#fff">Flask routes + auth</text><text x="480" y="301" text-anchor="middle" class="small" fill="#e8f4fb">Dispatch, render, persist</text>
-  <rect x="710" y="190" width="280" height="135" fill="#e67e22" class="box"/><text x="850" y="238" text-anchor="middle" class="section">Analysis Modules</text><text x="850" y="273" text-anchor="middle" class="body" fill="#fff">Job ML + security rules</text><text x="850" y="301" text-anchor="middle" class="small" fill="#fff4e8">Resume, email, website checks</text>
-  <rect x="1070" y="190" width="220" height="135" fill="#3b8c75" class="box"/><text x="1180" y="238" text-anchor="middle" class="section">SQLite</text><text x="1180" y="273" text-anchor="middle" class="body" fill="#fff">Users + records</text><text x="1180" y="301" text-anchor="middle" class="small" fill="#eaf8f2">users / analysis_history</text>
-  <rect x="1360" y="205" width="185" height="105" fill="#123b59" class="box"/><text x="1452" y="250" text-anchor="middle" class="section">Browser</text><text x="1452" y="282" text-anchor="middle" class="small" fill="#dcecf7">HTML result / history</text>
-  <path d="M255 257 L330 257" class="arrow"/><path d="M630 257 L710 257" class="arrow"/><path d="M990 257 L1070 257" class="arrow"/><path d="M1290 257 L1360 257" class="arrow"/><text x="293" y="243" text-anchor="middle" class="small">request</text><text x="670" y="243" text-anchor="middle" class="small">dispatch</text><text x="1030" y="243" text-anchor="middle" class="small">auth / history</text><text x="1325" y="243" text-anchor="middle" class="small">response</text>
+  <text x="800" y="150" text-anchor="middle" class="heading">System Data Flow (Context Diagram)</text>
 
-  <text x="800" y="405" text-anchor="middle" class="title" style="font-size:28px">Detailed Processing Flowchart</text>
-  <rect x="685" y="445" width="230" height="62" fill="#236b8e" class="box"/><text x="800" y="484" text-anchor="middle" class="section">HTTP Request</text>
-  <path d="M800 507 L800 535" class="arrow"/>
-  <rect x="650" y="535" width="300" height="70" fill="#2b78a9" class="box"/><text x="800" y="565" text-anchor="middle" class="section">Check Session</text><text x="800" y="591" text-anchor="middle" class="section">Dispatch Route</text>
-  <path d="M650 570 L530 570 L530 650" class="arrow"/><path d="M950 570 L1070 570 L1070 650" class="arrow"/><text x="545" y="556" class="small">Job text</text><text x="975" y="556" class="small">Resume / Email / Website URL</text>
-  <rect x="360" y="650" width="340" height="72" fill="#e67e22" class="box"/><text x="530" y="681" text-anchor="middle" class="section">Job Analyzer</text><text x="530" y="706" text-anchor="middle" class="small" fill="#fff4e8">TF-IDF + model + rule checks</text>
-  <rect x="900" y="650" width="340" height="72" fill="#7a5a9e" class="box"/><text x="1070" y="681" text-anchor="middle" class="section">Resume / Email / Website</text><text x="1070" y="706" text-anchor="middle" class="small" fill="#f4edfb">Privacy, format, and URL checks</text>
-  <path d="M530 722 L530 755 L800 755" class="arrow"/><path d="M1070 722 L1070 755 L800 755" class="arrow"/>
-  <rect x="650" y="755" width="300" height="65" fill="#123b59" class="box"/><text x="800" y="795" text-anchor="middle" class="section">Render Result + Save History</text>
-  <path d="M800 820 L800 852" class="arrow"/><text x="800" y="870" text-anchor="middle" class="small">Protected routes require login; reset uses CAREERSHIELD_RESET_KEY (not stored in SQLite).</text>
+  <rect x="55" y="235" width="235" height="125" fill="#236b8e" class="box"/>
+  <text x="172" y="280" text-anchor="middle" class="label">User / Browser</text>
+  <text x="172" y="312" text-anchor="middle" class="body">Credentials, analysis input</text>
+  <text x="172" y="338" text-anchor="middle" class="body">and history requests</text>
+
+  <rect x="425" y="215" width="390" height="165" fill="#2b78a9" class="box"/>
+  <text x="620" y="260" text-anchor="middle" class="label">CareerShield AI</text>
+  <text x="620" y="295" text-anchor="middle" class="body">Flask routes, authentication</text>
+  <text x="620" y="324" text-anchor="middle" class="body">and analysis modules</text>
+  <text x="620" y="353" text-anchor="middle" class="body">Render forms, results and history</text>
+
+  <path d="M290 270H425" class="arrow"/>
+  <text x="357" y="254" text-anchor="middle" class="note">Requests / input</text>
+  <path d="M425 340H290" class="arrow"/>
+  <text x="357" y="365" text-anchor="middle" class="note">HTML / results</text>
+
+  <path d="M905 220H1085V370H905Z" fill="#3b8c75" class="box"/>
+  <ellipse cx="995" cy="220" rx="90" ry="15" fill="#3b8c75" stroke="#a9bfce" stroke-width="2"/>
+  <ellipse cx="995" cy="370" rx="90" ry="15" fill="#3b8c75" stroke="#a9bfce" stroke-width="2"/>
+  <text x="995" y="265" text-anchor="middle" class="label">SQLite</text>
+  <text x="995" y="298" text-anchor="middle" class="body">users</text>
+  <text x="995" y="327" text-anchor="middle" class="body">analysis_history</text>
+
+  <path d="M815 260H905" class="arrow"/>
+  <text x="860" y="242" text-anchor="middle" class="note">Account and</text>
+  <text x="860" y="260" text-anchor="middle" class="note">analysis writes</text>
+  <path d="M905 335H815" class="arrow"/>
+  <text x="860" y="362" text-anchor="middle" class="note">Account lookup / history</text>
+
+  <rect x="1220" y="245" width="325" height="105" fill="#7a5a9e" class="box"/>
+  <text x="1382" y="285" text-anchor="middle" class="label">Server Configuration</text>
+  <text x="1382" y="318" text-anchor="middle" class="body">CAREERSHIELD_RESET_KEY</text>
+  <path d="M1220 300H1190V405H620V380" class="arrow"/>
+  <text x="1000" y="398" text-anchor="middle" class="note">Reset key loaded by app</text>
+
+  <text x="800" y="445" text-anchor="middle" class="note">Passwords are stored as hashes; Flask session data is held in a signed browser cookie.</text>
+  <path d="M40 475H1560" stroke="#c6d6e0" stroke-width="2"/>
+
+  <text x="800" y="520" text-anchor="middle" class="heading">Protected Analysis and History Flow</text>
+
+  <rect x="700" y="555" width="200" height="58" fill="#236b8e" class="box"/>
+  <text x="800" y="592" text-anchor="middle" class="label">Protected Request</text>
+  <path d="M800 613V650" class="arrow"/>
+
+  <path d="M800 650 920 710 800 770 680 710Z" fill="#f0a94b" class="decision"/>
+  <text x="800" y="704" text-anchor="middle" class="label">user_id in</text>
+  <text x="800" y="729" text-anchor="middle" class="label">session?</text>
+
+  <path d="M680 710H465" class="arrow"/>
+  <text x="570" y="695" text-anchor="middle" class="note">No</text>
+  <rect x="230" y="680" width="235" height="62" fill="#b85c5c" class="box"/>
+  <text x="347" y="719" text-anchor="middle" class="label">Redirect to Login</text>
+
+  <path d="M800 770V795" class="arrow"/>
+  <text x="820" y="790" class="note">Yes</text>
+  <rect x="675" y="795" width="250" height="62" fill="#2b78a9" class="box"/>
+  <text x="800" y="834" text-anchor="middle" class="label">Dispatch Route</text>
+
+  <path d="M675 825H350V880" class="arrow"/>
+  <text x="460" y="812" text-anchor="middle" class="note">Analysis page / submission</text>
+  <path d="M350 880 420 920 350 960 280 920Z" fill="#f0a94b" class="decision"/>
+  <text x="350" y="916" text-anchor="middle" class="label">Non-empty</text>
+  <text x="350" y="940" text-anchor="middle" class="label">POST?</text>
+  <path d="M280 920H235" class="arrow"/>
+  <text x="258" y="905" text-anchor="middle" class="note">No</text>
+  <rect x="55" y="885" width="180" height="70" fill="#e67e22" class="box"/>
+  <text x="145" y="915" text-anchor="middle" class="label">Render</text>
+  <text x="145" y="940" text-anchor="middle" class="body">Module form</text>
+  <path d="M420 920H500" class="arrow"/>
+  <text x="460" y="905" text-anchor="middle" class="note">Yes</text>
+  <rect x="500" y="865" width="500" height="125" fill="#7a5a9e" class="box"/>
+  <text x="750" y="899" text-anchor="middle" class="label">Job / Resume / Email / Website Analyzer</text>
+  <text x="750" y="930" text-anchor="middle" class="body">Analyze input and produce the module result</text>
+  <text x="750" y="960" text-anchor="middle" class="body">Save input + result to SQLite; render result</text>
+
+  <path d="M925 825H1300V875" class="arrow"/>
+  <text x="1115" y="812" text-anchor="middle" class="note">GET /history</text>
+  <rect x="1110" y="875" width="400" height="115" fill="#3b8c75" class="box"/>
+  <text x="1310" y="910" text-anchor="middle" class="label">Analysis History</text>
+  <text x="1310" y="940" text-anchor="middle" class="body">Load current user's records</text>
+  <text x="1310" y="968" text-anchor="middle" class="body">Filter, paginate and render (no new record)</text>
+
+  <text x="800" y="1025" text-anchor="middle" class="note">Email and website checks parse input only; they do not verify sender identity, domain ownership, or live website status.</text>
 </svg>
